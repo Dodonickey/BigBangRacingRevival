@@ -86,8 +86,8 @@ namespace BBRRevival.Services.Controllers
             byte[] data = null;
 
             string Query = _request.Url.Query;
-            string param = Query.Split("&")[0];
-            string value = param.Split("=")[1];
+            //string param = Query.Split("&")[0];
+            //string value = param.Split("=")[1];
 
             string sessionId = sessionsManager.AddNewSessionId();
 
@@ -476,7 +476,7 @@ namespace BBRRevival.Services.Controllers
             }
             else
             {
-                Log.Verbose($"Value is {value}");
+                //Log.Verbose($"Value is {value}");
             }
 
             Log.Verbose("All Headers:");
