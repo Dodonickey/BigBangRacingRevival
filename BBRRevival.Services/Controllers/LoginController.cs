@@ -79,7 +79,7 @@ namespace BBRRevival.Services.Controllers
 
         }
 
-        [Route("POST", "/v4/player/login")]
+        [Route("POST", "/v5/player/login")]//id 510 in adventureinitialdata = the silver chest after node 10
         public async void PlayerLogin()
         {
             Log.Information("Received Login Request");
@@ -130,11 +130,12 @@ namespace BBRRevival.Services.Controllers
                 settings.Add("triesForAd", 0);
                 settings.Add("triesForGems", 0);
                 settings.Add("triesGemPrice", 0);
+                settings.Add("gemShopEnabled", true);
 
                 Dictionary<string, object> tdict = new Dictionary<string, object>();
-                tdict.Add("tournamentId", "d1a79cbc63964a18a6ba05f11d5df82b");
-                tdict.Add("minigameId", "d1a79cbc63964a18a6ba05f11d5df82b");
-                tdict.Add("ccCap", 1200f);
+                tdict.Add("tournamentId", "testTournamentID");
+                tdict.Add("minigameId", "testMinigameID");
+                tdict.Add("ccCap", 12.4f);
                 tdict.Add("prizeCoins", 999);
                 tdict.Add("acceptingNewScores", true);
                 tdict.Add("ownerId", "testOwnerId");
@@ -164,6 +165,10 @@ namespace BBRRevival.Services.Controllers
                 rmcarpdict.Add("planet", "RacingMotorcycle");
                 rmcarpdict.Add("version", 2);
 
+                Dictionary<string, object> ldcarpdict = new Dictionary<string, object>(); //add in another one that is not adventure, maybe it will hit the callback
+                ldcarpdict.Add("planet", "LadderOffroadCar");
+                ldcarpdict.Add("version", 2);
+
                 Dictionary<string, object> metadatadict = new Dictionary<string, object>(); //add in another one that is not adventure, maybe it will hit the callback
                 metadatadict.Add("planet", "Metadata");
                 metadatadict.Add("version", 2);
@@ -175,16 +180,19 @@ namespace BBRRevival.Services.Controllers
                 nodesdict.Add("id", "1234");
                 nodesdict.Add("levelNumber", "12345");
                 nodesdict.Add("score", "123456");
+                nodesdict.Add("rented", false);
 
                 nodes.Add(nodesdict);
 
                 List<object> paths = new List<object>();
                 Dictionary<string, object> path = new Dictionary<string, object>();
                 path.Add("name", "MainPath");
-                path.Add("currentNode", "5");
-                //path.Add("type", "1");
+                path.Add("lane", 17);
+                path.Add("currentNode", 24);
+                path.Add("type", "main");
                 path.Add("nodes", nodes);
-                path.Add("startNode", "1");
+                path.Add("startNode", 10);
+                path.Add("overwrite", true);
                 path.Add("planet", "AdventureOffroadCar");
 
                 paths.Add(path);
@@ -205,11 +213,11 @@ namespace BBRRevival.Services.Controllers
                 edict.Add("eventData", tdict);
                 edict.Add("uris", turis);
 
-                //ill move these keys to another dictionary
                 Dictionary<string, object> dataload = new Dictionary<string, object>();
                 dataload.Add("sessionExpiration", false);
                 dataload.Add("adsConfig", new List<object>());
                 dataload.Add("seasonConfig", new Dictionary<string, object>());
+                dataload.Add("iapConfig", new Dictionary<string, object>());
                 dataload.Add("gemPriceConfig", new Dictionary<string, object>());
                 dataload.Add("editorConfig", new Dictionary<string, object>());
                 dataload.Add("achievements", new List<object>());
@@ -222,7 +230,7 @@ namespace BBRRevival.Services.Controllers
 
                 dict.Add("playerId", "123456789");
                 dict.Add("developer", true);
-                dict.Add("countryCode", "386");
+                dict.Add("countryCode", "KP");
                 dict.Add("clientConfig", settings);
                 dict.Add("teamid", "0");
                 dict.Add("teamName", "BigTeamNameIDK");
@@ -245,114 +253,38 @@ namespace BBRRevival.Services.Controllers
 
                 dict.Add("mcRank", 4000);
                 dict.Add("carRank", 4000);
-                dict.Add("mcTrophies", 21000);
-                dict.Add("carTrophies", 21000);
 
                 dict.Add("coins", 1000000);
+                dict.Add("tokenCoin", 10000);
                 dict.Add("diamonds", 1000000);
                 dict.Add("copper", 1000000);
                 dict.Add("shards", 1000000);
+                dict.Add("stars", 1000000);
+                dict.Add("vip", true);
 
                 dict.Add("xp", 100000);
-                dict.Add("totalLikes", 100000);
+                dict.Add("totalLikes", 10);
                 dict.Add("totalCoinsEarned", 100000);
-                dict.Add("completedAdventures", 999);
-                dict.Add("reward", 111);
-                dict.Add("dirtBikeBundle", true);
+                dict.Add("carTrophies", 21000);
+                dict.Add("curCar", 1);//setting this to 0 will give you the offroader. 1 and 2 give you other vechicles.
+
                 //Adding Hats and Trails.
-
-                dict.Add("MotorcycleVisual", new Dictionary<string, object>());
-
-                var motorcycleVisual = (Dictionary<string, object>)dict["MotorcycleVisual"];
-                motorcycleVisual.Add("FeatherHat", false);
-                motorcycleVisual.Add("PaperBag", false);
-                motorcycleVisual.Add("OrangeHat", false);
-                motorcycleVisual.Add("WinterHat", false);
-                motorcycleVisual.Add("PinkHat", false);
-                motorcycleVisual.Add("ReindeerHat", false);
-                motorcycleVisual.Add("HawkMask", false);
-                motorcycleVisual.Add("MrBaconHair", false);
-                motorcycleVisual.Add("HelmetGolden", false);
-                motorcycleVisual.Add("LorpHeadband", false);
-                motorcycleVisual.Add("GoldenShades", false);
-                motorcycleVisual.Add("KnightHelmet", false);
-                motorcycleVisual.Add("Mask", false);
-                motorcycleVisual.Add("PumpkinHat", false);
-                motorcycleVisual.Add("PilotHat", false);
-                motorcycleVisual.Add("HorseHead", false);
-                motorcycleVisual.Add("WitchHat", false);
-                motorcycleVisual.Add("GirlyHair", false);
-                motorcycleVisual.Add("BuilderHat", false);
-                motorcycleVisual.Add("IceCreamHat", false);
-                motorcycleVisual.Add("UnicornMask", false);
-                motorcycleVisual.Add("GoldenCarHelmet", true);
-                motorcycleVisual.Add("LovelyHat", false);
-                motorcycleVisual.Add("AnniversaryCandleHat", false);
-                motorcycleVisual.Add("AnniversaryPartyHat", false);
-                motorcycleVisual.Add("AnglerFishHat", false);
-                motorcycleVisual.Add("BarbarianHelmet", false);
-                motorcycleVisual.Add("BaseballHat", false);
-                motorcycleVisual.Add("BobbleHat", false);
-                motorcycleVisual.Add("BootHat", false);
-                motorcycleVisual.Add("CatHat", false);
-                motorcycleVisual.Add("CowboyHat", false);
-                motorcycleVisual.Add("SteelMask", false);
-                motorcycleVisual.Add("TimeTravellerHat", false);
-                motorcycleVisual.Add("Helmet", false);
-                motorcycleVisual.Add("MotocrossHelmet", false);
-                motorcycleVisual.Add("VR", false);
-                motorcycleVisual.Add("Fish", false);
-                motorcycleVisual.Add("MilkJugHat", false);
-                motorcycleVisual.Add("DealWithItGlasses", false);
-                motorcycleVisual.Add("ReversalCrown", false);
-                motorcycleVisual.Add("ToadHat", false);
-                motorcycleVisual.Add("PowerHelmet", false);
-                motorcycleVisual.Add("MushroomHat", false);
-                motorcycleVisual.Add("FishHat", false);
-                motorcycleVisual.Add("WerewolfMask", false);
-                motorcycleVisual.Add("trail_anniversary", false);
-                motorcycleVisual.Add("trail_bubble", false);
-                motorcycleVisual.Add("trail_cash", false);
-                motorcycleVisual.Add("trail_death", false);
-                motorcycleVisual.Add("trail_feather", false);
-                motorcycleVisual.Add("trail_fire", false);
-                motorcycleVisual.Add("trail_kittypaw", false);
-                motorcycleVisual.Add("trail_rainbow", false);
-                motorcycleVisual.Add("trail_singular", false);
-                motorcycleVisual.Add("trail_snow", false);
-                motorcycleVisual.Add("trail_scifi", false);
-                motorcycleVisual.Add("trail_bat", false);
-                motorcycleVisual.Add("trail_boss", true);
-                motorcycleVisual.Add("ChickenHat", false);
-                motorcycleVisual.Add("WinterCap", false);
-
                 // The Trail Values seem to be quite easy to add.
                 dict.Add("OffroadCarVisual", new Dictionary<string, object>());
 
+                // Hat Values not finished for now.
                 var offroadCarVisual = (Dictionary<string, object>)dict["OffroadCarVisual"];
-                offroadCarVisual.Add("FeatherHat", false);
                 offroadCarVisual.Add("PaperBag", false);
                 offroadCarVisual.Add("OrangeHat", false);
                 offroadCarVisual.Add("WinterHat", false);
                 offroadCarVisual.Add("PinkHat", false);
                 offroadCarVisual.Add("ReindeerHat", false);
                 offroadCarVisual.Add("HawkMask", false);
-                offroadCarVisual.Add("MrBaconHair", false);
+                offroadCarVisual.Add("BaconHair", false);
                 offroadCarVisual.Add("RobotHat", false);
                 offroadCarVisual.Add("LorpHeadband", false);
-                offroadCarVisual.Add("GoldenShades", false);
-                offroadCarVisual.Add("KnightHelmet", false);
-                offroadCarVisual.Add("Mask", false);
-                offroadCarVisual.Add("PumpkinHat", false);
-                offroadCarVisual.Add("PilotHat", false);
-                offroadCarVisual.Add("HorseHead", false);
-                offroadCarVisual.Add("WitchHat", false);
-                offroadCarVisual.Add("GirlyHair", false);
-                offroadCarVisual.Add("BuilderHat", false);
-                offroadCarVisual.Add("IceCreamHat", false);
-                offroadCarVisual.Add("UnicornMask", false);
                 offroadCarVisual.Add("GoldenCarHelmet", true);
-                offroadCarVisual.Add("LovelyHat", false);
+                offroadCarVisual.Add("BuilderHat", false);
                 offroadCarVisual.Add("AnniversaryCandleHat", false);
                 offroadCarVisual.Add("AnniversaryPartyHat", false);
                 offroadCarVisual.Add("AnglerFishHat", false);
@@ -366,8 +298,7 @@ namespace BBRRevival.Services.Controllers
                 offroadCarVisual.Add("TimeTravellerHat", false);
                 offroadCarVisual.Add("Helmet", false);
                 offroadCarVisual.Add("MotocrossHelmet", false);
-                offroadCarVisual.Add("VR", false);
-                offroadCarVisual.Add("Fish", false);
+                offroadCarVisual.Add("VRgoggles", false);
                 offroadCarVisual.Add("MilkJugHat", false);
                 offroadCarVisual.Add("DealWithItGlasses", false);
                 offroadCarVisual.Add("ReversalCrown", false);
@@ -388,89 +319,49 @@ namespace BBRRevival.Services.Controllers
                 offroadCarVisual.Add("trail_snow", false);
                 offroadCarVisual.Add("trail_scifi", true);
                 offroadCarVisual.Add("trail_bat", false);
-                offroadCarVisual.Add("trail_boss", false);
                 offroadCarVisual.Add("ChickenHat", false);
                 offroadCarVisual.Add("WinterCap", false);
 
                 dict.Add("OffroadCarUpgrades", new Dictionary<string, object>());
-                //offroader upgrades
+
                 var UpgradeDict = (Dictionary<string, object>)dict["OffroadCarUpgrades"];
-                UpgradeDict.Add("CarGrip1", "2000");
-                UpgradeDict.Add("CarGrip2", "2000");
-                UpgradeDict.Add("CarGrip3", "2000");
-                UpgradeDict.Add("CarGrip4", "2000");
-                UpgradeDict.Add("CarGrip5", "2000");
-                UpgradeDict.Add("CarGrip6", "2000");
-                UpgradeDict.Add("CarSpeed1", "2000");
-                UpgradeDict.Add("CarSpeed2", "2000");
-                UpgradeDict.Add("CarSpeed3", "2000");
-                UpgradeDict.Add("CarSpeed4", "2000");
-                UpgradeDict.Add("CarSpeed5", "2000");
-                UpgradeDict.Add("CarSpeed6", "2000");
-                UpgradeDict.Add("CarHandling1", "2000");
-                UpgradeDict.Add("CarHandling2", "2000");
-                UpgradeDict.Add("CarHandling3", "2000");
-                UpgradeDict.Add("CarHandling4", "2000");
-                UpgradeDict.Add("CarHandling5", "2000");
-                UpgradeDict.Add("CarHandling6", "2000");
-                UpgradeDict.Add("CarSpecial1", "2000");
-                UpgradeDict.Add("CarSpecial2", "2000");
-                UpgradeDict.Add("CarSpecial3", "2000");
-                UpgradeDict.Add("CarSpecial4", "2000");
-                UpgradeDict.Add("CarSpecial5", "2000");
-                UpgradeDict.Add("CarSpecial6", "2000");
+                UpgradeDict.Add("CarGrip1", "10");
+                UpgradeDict.Add("CarGrip2", "12");
+                UpgradeDict.Add("CarGrip3", "10");
+                UpgradeDict.Add("CarGrip4", "8");
+                UpgradeDict.Add("CarGrip5", "12");
+                UpgradeDict.Add("CarGrip6", "8");
+                UpgradeDict.Add("CarSpeed1", "12");
+                UpgradeDict.Add("CarSpeed2", "10");
+                UpgradeDict.Add("CarSpeed3", "8");
+                UpgradeDict.Add("CarSpeed4", "12");
+                UpgradeDict.Add("CarSpeed5", "10");
+                UpgradeDict.Add("CarSpeed6", "8");
+                UpgradeDict.Add("CarHandling1", "12");
+                UpgradeDict.Add("CarHandling2", "10");
+                UpgradeDict.Add("CarHandling3", "12");
+                UpgradeDict.Add("CarHandling4", "10");
+                UpgradeDict.Add("CarHandling5", "8");
+                UpgradeDict.Add("CarHandling6", "8");
+                UpgradeDict.Add("CarSpecial1", "8");
+                UpgradeDict.Add("CarSpecial2", "8");
+                UpgradeDict.Add("CarSpecial3", "12");
+                UpgradeDict.Add("CarSpecial4", "12");
+                UpgradeDict.Add("CarSpecial5", "10");
+                UpgradeDict.Add("CarSpecial6", "10");
+                UpgradeDict.Add("NewCarSpeed1", "3");
+                UpgradeDict.Add("NewCarSpeed2", "3");
+                UpgradeDict.Add("NewCarHandling1", "3");
+                UpgradeDict.Add("NewCarHandling2", "3");
+                UpgradeDict.Add("NewCarSpeed4", "3");
+                UpgradeDict.Add("NewCarSpeed3", "3");
+                UpgradeDict.Add("NewCarGrip1", "3");
+                UpgradeDict.Add("NewCarGrip2", "3");
 
-                dict.Add("MotorcycleUpgrades", new Dictionary<string, object>());
-                //offroader upgrades
-                var MotorcycleUpgrade = (Dictionary<string, object>)dict["MotorcycleUpgrades"];
-                MotorcycleUpgrade.Add("Grip1", "2000");
-                MotorcycleUpgrade.Add("Grip2", "2000");
-                MotorcycleUpgrade.Add("Grip3", "2000");
-                MotorcycleUpgrade.Add("Grip4", "2000");
-                MotorcycleUpgrade.Add("Grip5", "2000");
-                MotorcycleUpgrade.Add("Grip6", "2000");
-                MotorcycleUpgrade.Add("Speed1", "2000");
-                MotorcycleUpgrade.Add("Speed2", "2000");
-                MotorcycleUpgrade.Add("Speed3", "2000");
-                MotorcycleUpgrade.Add("Speed4", "2000");
-                MotorcycleUpgrade.Add("Speed5", "2000");
-                MotorcycleUpgrade.Add("Speed6", "2000");
-                MotorcycleUpgrade.Add("Handling1", "2000");
-                MotorcycleUpgrade.Add("Handling2", "2000");
-                MotorcycleUpgrade.Add("Handling3", "2000");
-                MotorcycleUpgrade.Add("Handling4", "2000");
-                MotorcycleUpgrade.Add("Handling5", "2000");
-                MotorcycleUpgrade.Add("Handling6", "2000");
-                MotorcycleUpgrade.Add("Special1", "2000");
-                MotorcycleUpgrade.Add("Special2", "2000");
-                MotorcycleUpgrade.Add("Special3", "2000");
-                MotorcycleUpgrade.Add("Special4", "2000");
-                MotorcycleUpgrade.Add("Special5", "2000");
-                MotorcycleUpgrade.Add("Special6", "2000");
-
-                dict.Add("planetVersions", new List<object> { adpdict, tpdict, ofcarpdict, rmcarpdict, metadatadict });
+                dict.Add("planetVersions", new List<object> { tpdict, ofcarpdict, metadatadict, ldcarpdict });
 
                 dict.Add("paths", paths);
 
-                //initialise shop dict
-                dict.Add("iapConfig", new Dictionary<string, object>());
-
-                var ShopData = (Dictionary<string, object>)dict["iapConfig"];
-                ShopData.Add("debugLevel", 1);
-                ShopData.Add("items", new List<object>());
-
-                List<object> list = ShopData["items"] as List<object>;
-
-                //i dont know the values for any of these keys. Setting them to random values.
-                Dictionary<string, object> shopItems = new Dictionary<string, object>();
-                shopItems.Add("identifier", "24662");
-                shopItems.Add("androidIdentifier", "24662");
-                shopItems.Add("resource", "bundle");
-                shopItems.Add("amount", 999);
-                shopItems.Add("visible", true);
-                shopItems.Add("order", 1);
-                shopItems.Add("sticker", "what");
-                shopItems.Add("bundle", new Dictionary<string, object>());//bundle dict
 
                 data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(dict));
             }
@@ -484,11 +375,8 @@ namespace BBRRevival.Services.Controllers
             {
                 Log.Verbose(item);
             }
-
-            //send the request
             ResponseHelper.PrepareRequest(data, RawUrl, _response, _request);
             await _response.OutputStream.WriteAsync(data, 0, data.Length);
-
 
             _response.Close();
         }
@@ -579,21 +467,52 @@ namespace BBRRevival.Services.Controllers
             _response.Close();
         }
 
-        [Route("GET", "/v1/tournament/score/get")]
-        public async void GetLeaderboard()
+        [Route("POST", "/v1/rating/save")]//post request suck
+        public async void SaveRating()
         {
             byte[] data = null;
 
-            Dictionary<string, object> TournamentLeaderboard = new Dictionary<string, object>();
-            TournamentLeaderboard.Add("globalParticipants", 0);
-            TournamentLeaderboard.Add("acceptingNewScores", true);
-            TournamentLeaderboard.Add("globalNitroPot", 21);
-            TournamentLeaderboard.Add("roomNitroPot", 21);
-            TournamentLeaderboard.Add("ownerTime", 11);
-            TournamentLeaderboard.Add("room", 1);
-            TournamentLeaderboard.Add("roomCount", 1);
+            Dictionary<string, object> Rating = new Dictionary<string, object>();
 
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(TournamentLeaderboard));
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(Rating));
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
+
+            Console.WriteLine(this.RequestBodyAsync().Result);
+
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
+
+            _response.Close();
+        }
+
+        [Route("GET", "/v1/player/specialOffer")]
+        public async void GetSpecialOffers()
+        {
+            byte[] data = null;
+
+            Dictionary<string, object> specialoffer = new Dictionary<string, object>();
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(specialoffer));
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);
+
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
+
+            _response.Close();
+
+        }
+
+        [Route("GET", "/v2/player/getAchievementReward")]
+        public async void GetRaceActivityAchievementRewards()
+        {
+            byte[] data = null;
+
+            Dictionary<string, object> achievementtrophies = new Dictionary<string, object>();
+            achievementtrophies.Add("trophies", new List<object>());
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(achievementtrophies));
 
             ResponseHelper.AddContentType(_response);
             ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
@@ -603,36 +522,16 @@ namespace BBRRevival.Services.Controllers
             _response.Close();
         }
 
-        //Gotta try move this function somewhere else... LoginController Is getting too big.
-
-        [Route("GET", "/v1/global/chat/find")]
-        public async void GetComments()
+        [Route("GET", "/v2/player/getRaceFund")]
+        public async void GetRaceActivityRaceFund()
         {
             byte[] data = null;
 
-            Dictionary<string, object> commentData = new Dictionary<string, object>();
-            commentData.Add("data", new List<object>());
+            Dictionary<string, object> racefund = new Dictionary<string, object>();
+            racefund.Add("trophies", new List<object>());
+            racefund.Add("isPay", false);
 
-            List<object> list = commentData["data"] as List<object>;
-
-            Dictionary<string, object> commentData2 = new Dictionary<string, object>();
-            commentData2.Add("playerId", "123456798");
-            commentData2.Add("comment", "placeholdertext");
-            commentData2.Add("message", "inserttext");
-            commentData2.Add("name", "testguy1");
-            commentData2.Add("tag", "tg1");
-            commentData2.Add("facebookId", "f612dg82dq87");
-            commentData2.Add("gameCenterId", "g37gr74g73428");
-            commentData2.Add("admin", true);
-            commentData2.Add("publishTime", new Dictionary<string, object>());
-
-            Dictionary<string, object> commentData3 = (Dictionary<string, object>)commentData2["publishTime"];
-            commentData3.Add("$date", 1518220800000L);
-
-            commentData2.Add("type", "whatdoesthismean");
-            commentData2.Add("customData", new Dictionary<string, object>());
-
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(commentData));
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(racefund));
 
             ResponseHelper.AddContentType(_response);
             ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
@@ -642,16 +541,17 @@ namespace BBRRevival.Services.Controllers
             _response.Close();
         }
 
-        [Route("POST", "/v1/global/chat/save")]
-        public async void SaveComment()
+        [Route("GET", "/v2/player/getLastLadder")]
+        public async void GetLadderReward()
         {
             byte[] data = null;
 
-            Dictionary<string, object> savecommentData = new Dictionary<string, object>();
+            Dictionary<string, object> ladderReward = new Dictionary<string, object>();
+            ladderReward.Add("lastLadderScore", 999999);
+            ladderReward.Add("lastLadderEndTime", Convert.ToUInt64(new DateTime(2024, 1, 1).Ticks));
+            ladderReward.Add("lastLadderReward", true);
 
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(savecommentData));
-
-
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(ladderReward));
 
             ResponseHelper.AddContentType(_response);
             ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
@@ -661,200 +561,112 @@ namespace BBRRevival.Services.Controllers
             _response.Close();
         }
 
-        //unfinished, have to add leaderboardentrylist
-
-        [Route("GET", "/v1/trophy/leaderboard")]
-        public async void GetTrophyLeaderboard()
+        [Route("GET", "/v2/player/getLadderScore")]
+        public async void GetLadderScore()
         {
             byte[] data = null;
 
-            Dictionary<string, object> ParseLeaderBoard = new Dictionary<string, object>();
-            ParseLeaderBoard.Add("global", new List<object>());
+            Dictionary<string, object> ladderscore = new Dictionary<string, object>();
+            ladderscore.Add("ladderScore", 12345);
 
-            List<object> leaderboard1 = ParseLeaderBoard["global"] as List<object>;
-
-            Dictionary<string, object> person1 = new Dictionary<string, object>(); //this dict makes me add the parseplayerdata keys here. I will add it later because its too long
-            person1.Add("id", "20103204");
-            person1.Add("name", "Surge");
-            person1.Add("trophies", 2000000000);
-            person1.Add("time", 100);
-
-            leaderboard1.Add(person1);
-
-            ParseLeaderBoard.Add("local", new List<object>());
-            ParseLeaderBoard.Add("friend", new List<object>());
-
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(ParseLeaderBoard));
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(ladderscore));
 
             ResponseHelper.AddContentType(_response);
-            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
 
             await _response.OutputStream.WriteAsync(data, 0, data.Length);
 
             _response.Close();
         }
 
-        [Route("GET", "/v1/event/feed")]
-
-        public async void GetFeed()
+        [Route("GET", "/v2/player/getLastTimeLimitedCompetitionReward")]
+        public async void GetLastTimeLimitedCompetitionReward()
         {
             byte[] data = null;
 
-            Dictionary<string, object> FeedData = new Dictionary<string, object>();
-            FeedData.Add("data", new List<object>());
+            Dictionary<string, object> cancelcompetitionreward = new Dictionary<string, object>();
+            cancelcompetitionreward.Add("lastEndTime", Convert.ToUInt64(new DateTime(2025, 12, 4).Ticks));
+            cancelcompetitionreward.Add("lastRank", 24);
 
-            List<object> FeedList = FeedData["data"] as List<object>;
-
-            Dictionary<string, object> FeedDict = new Dictionary<string, object>();
-            FeedDict.Add("eventName", "Hello!");
-            FeedDict.Add("eventType", "Special");
-            FeedDict.Add("id", "369852140");
-            FeedDict.Add("header", "Attention Racers!");
-            FeedDict.Add("message", "It is with heavy hearts that we must announce the following: Big Bang Racing will be having the final BIg Bang on the 31st of May, 2022.This is due to critical issues that will prevent the game from working for much longer. The game is avaliable in the App and Play Storeup untill the 30th of April, 2022.");
-            FeedDict.Add("label", "what");
-            FeedDict.Add("popup", true);
-            FeedDict.Add("floatingNode", false);
-            FeedDict.Add("newsFeed", true);
-
-            FeedList.Add(FeedDict);
-
-            Dictionary<string, object> FeedDict2 = new Dictionary<string, object>();
-            FeedDict2.Add("eventName", "Hello2!");
-            FeedDict2.Add("eventType", "Special");
-            FeedDict2.Add("id", "369852132");
-            FeedDict2.Add("header", "URGENT");
-            FeedDict2.Add("message", "123456");
-            FeedDict2.Add("label", "what");
-            FeedDict2.Add("popup", false);
-            FeedDict2.Add("floatingNode", false);
-            FeedDict2.Add("newsFeed", true);
-
-            FeedList.Add(FeedDict2);
-
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(FeedData));
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(cancelcompetitionreward));
 
             ResponseHelper.AddContentType(_response);
-            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
 
             await _response.OutputStream.WriteAsync(data, 0, data.Length);
 
             _response.Close();
         }
 
-        [Route("GET", "/v1/creator/top")]
-        public async void GetTopCreators()
+        [Route("GET", "/v2/player/isJoinTimeLimitedCompetition")]
+        public async void GetJoinTimeLimitedCompetition()
         {
             byte[] data = null;
 
-            Dictionary<string, object> ParseCreatorLeaderboard = new Dictionary<string, object>();
-            ParseCreatorLeaderboard.Add("leaderboard", new List<object>());
+            Dictionary<string, object> GetJoinTimeLimitedCompetition = new Dictionary<string, object>();
+            GetJoinTimeLimitedCompetition.Add("res_code", 12345);
+            GetJoinTimeLimitedCompetition.Add("endTime", Convert.ToInt64(new DateTime(2025, 12, 4).Ticks));
+            GetJoinTimeLimitedCompetition.Add("isJoin", false);
 
-            List<object> CreatorLdb1 = ParseCreatorLeaderboard["leaderboard"] as List<object>;
-
-            Dictionary<string, object> person1 = new Dictionary<string, object>(); //this dict makes me add the parseplayerdata keys here. I will add it later because its too long
-            person1.Add("id", "24687531");
-            person1.Add("name", "Dodo Nickey");
-            person1.Add("tag", "dodonickey");
-            person1.Add("acceptNotifications", true);
-            person1.Add("facebookId", "uhihv67g9onob");
-            person1.Add("gameCenterId", "g76f7g8p9j8t33");
-            person1.Add("ninjaCreationTimestamp", "what");
-            person1.Add("countryCode", "284");
-            person1.Add("itemDbVersion", 0);
-            person1.Add("publishedMinigameCount", 2);
-            person1.Add("followerCount", 230000);
-            person1.Add("totalCoinsEarned", 100000000);
-            person1.Add("totalLikes", 100000000);
-            person1.Add("totalSuperLikes", 100000000);
-            person1.Add("mcTrophies", 100000000);
-            person1.Add("carTrophies", 100000000);
-            person1.Add("bigBangPoints", 100000000);
-            person1.Add("completedAdventures", 100000000);
-            person1.Add("racesWon", 100000000);
-            person1.Add("teamId", "ff1du7");
-            person1.Add("teamName", "SYS64738");
-            person1.Add("teamRole", "Creator");
-            person1.Add("hasJoinedTeam", true);
-            person1.Add("reward", 100);
-            person1.Add("lastSeasonEndCarTrophies", 100000000);
-            person1.Add("lastSeasonEndMcTrophies", 100000000);
-            person1.Add("racesThisSeason", 100000000);
-            person1.Add("completedSurvey", false);
-            person1.Add("gender", "Male");
-            person1.Add("ageGroup", "24");
-            person1.Add("developer", true);
-
-            CreatorLdb1.Add(person1);
-
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(ParseCreatorLeaderboard));
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(GetJoinTimeLimitedCompetition));
 
             ResponseHelper.AddContentType(_response);
-            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
 
             await _response.OutputStream.WriteAsync(data, 0, data.Length);
 
             _response.Close();
         }
 
-        [Route("GET", "/v1/minigame/followee/published")]
-        public async void GetFolloweeLevels()
+        [Route("GET", "/v2/player/getServerTime")]
+        public async void GetServerTime()
         {
             byte[] data = null;
 
-            Dictionary<string, object> FolloweeLevels = new Dictionary<string, object>();
-            FolloweeLevels.Add("data", new List<object>());
+            Dictionary<string, object> ServerTime = new Dictionary<string, object>();
+            ServerTime.Add("currentTime", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 
-            List<object> Followee = FolloweeLevels["data"] as List<object>;
-
-            Dictionary<string, object> Followeelevel = new Dictionary<string, object>();
-            Followeelevel.Add("name", "Okay");
-            Followeelevel.Add("id", "f6f765c6fc064338b4d28560eac2ccbf-workingPub");//change this with your levels metadata
-            Followeelevel.Add("creatorId", "1238429");
-            Followeelevel.Add("gameMode", "StarCollect");
-
-            Followee.Add(Followeelevel);
-
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(FolloweeLevels));
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(ServerTime));
 
             ResponseHelper.AddContentType(_response);
-            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
 
             await _response.OutputStream.WriteAsync(data, 0, data.Length);
 
             _response.Close();
         }
 
-        [Route("GET", "/v2/minigame/meta/search")]
-        public async void FIndLevels()
+        [Route("GET", "/v2/player/sevensigned")]
+        public async void SevenDaySignin()
         {
             byte[] data = null;
 
-            Dictionary<string, object> LevelDatas = new Dictionary<string, object>();
-            LevelDatas.Add("data", new List<object>());
+            Dictionary<string, object> ParseSevenSignInData = new Dictionary<string, object>();
+            ParseSevenSignInData.Add("errorcode", 0);
+            ParseSevenSignInData.Add("sevenSignTimes", 1);
+            ParseSevenSignInData.Add("lastSevenSignTime", 1);
+            ParseSevenSignInData.Add("nowTime", 123);
 
-            List<object> Level1 = LevelDatas["data"] as List<object>;
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(ParseSevenSignInData));
 
-            Dictionary<string, object> Level1Data = new Dictionary<string, object>();
-            Level1Data.Add("name", "Level1");
-            Level1Data.Add("id", "d1a79cbc63964a18a6ba05f11d5df82b");
-            Level1Data.Add("creatorId", "1238429");
-            Level1Data.Add("gameMode", "StarCollect");
-            Level1Data.Add("playerUnit", "OffroadCar");
-            Level1Data.Add("gameQuality", 0.0);
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
 
-            Level1.Add(Level1Data);
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
 
-            Dictionary<string, object> Level2Data = new Dictionary<string, object>();
-            Level2Data.Add("name", "Level2");
-            Level2Data.Add("id", "d1a79cbc63964a18a6ba05f11d5df82b");
-            Level2Data.Add("creatorId", "1238429");
-            Level2Data.Add("gameMode", "StarCollect");
-            Level2Data.Add("playerUnit", "OffroadCar");
-            Level2Data.Add("gameQuality", 0.0);
+            _response.Close();
+        }
 
-            Level1.Add(Level2Data);
+        [Route("POST", "/v2/player/setGuideReward")]
+        public async void SetOperation()
+        {
+            byte[] data = null;
 
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(LevelDatas));
+            Dictionary<string, object> guidereward = new Dictionary<string, object>();
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(guidereward));
+
+            Console.WriteLine(this.RequestBodyAsync().Result);
 
             ResponseHelper.AddContentType(_response);
             ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);

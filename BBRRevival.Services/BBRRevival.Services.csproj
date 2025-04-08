@@ -8,10 +8,7 @@
 
   <ItemGroup>
     <None Remove="Assets\InitialData\AdventureMotorcycleLocalInitialData.txt" />
-    <None Remove="Assets\InitialData\AdventureOffroadCarLocalInitialData.txt" />
-    <None Remove="Assets\InitialData\MetadataLocalInitialData.txt" />
     <None Remove="Assets\InitialData\RacingMotorcycleLocalInitialData.txt" />
-    <None Remove="Assets\InitialData\RacingOffroadCarLocalInitialData.txt" />
     <None Remove="Assets\Music\BossMusic.bank" />
     <None Remove="Assets\Music\ChallengeMusic.bank" />
     <None Remove="Assets\Music\FMOD_bank_list.txt" />
@@ -24,24 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\InitialData\MetadataLocalInitialData.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Assets\InitialData\AdventureMotorcycleLocalInitialData.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\InitialData\AdventureOffroadCarLocalInitialData.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\InitialData\RacingMotorcycleLocalInitialData.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\InitialData\RacingOffroadCarLocalInitialData.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Music\BossMusic.bank">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -81,9 +60,160 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Assets\InitialData\AdventureOffroadCarLocalInitialData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\InitialData\LadderOffroadCarLocalInitialData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\InitialData\MetadataLocalInitialData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\InitialData\RacingOffroadCarLocalInitialData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\56e7f0f9340000b3009a7691\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\56e7f0f9340000b3009a7691\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\56e7f0f9340000b3009a7691\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\56fa75da350000b6039c13f7\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\56fa75da350000b6039c13f7\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\56fa75da350000b6039c13f7\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\578763eb3400006702d2fa2f\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\578763eb3400006702d2fa2f\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\578763eb3400006702d2fa2f\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57a93af63e000062002031e3\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57a93af63e000062002031e3\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57a93af63e000062002031e3\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57b1b53a3d00004300268ed9\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57b1b53a3d00004300268ed9\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57b1b53a3d00004300268ed9\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57bbab323d000084008fb008\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57bbab323d000084008fb008\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57bbab323d000084008fb008\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57c2b46f3d00004600e801a4\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57c2b46f3d00004600e801a4\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57c2b46f3d00004600e801a4\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57d0097b310000852cca7e3a\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57d0097b310000852cca7e3a\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\57d0097b310000852cca7e3a\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\580a181f350000ea86a49236\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\580a181f350000ea86a49236\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\580a181f350000ea86a49236\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\589b529f1f00001e006a5f49\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\589b529f1f00001e006a5f49\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\589b529f1f00001e006a5f49\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\58c493fc200000bf392c957c\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\58c493fc200000bf392c957c\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\58c493fc200000bf392c957c\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\59b7d9653400005f35170a2f\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\59b7d9653400005f35170a2f\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\59b7d9653400005f35170a2f\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\b0a732f1ad6540efa03e02a3ee72a79f\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\b0a732f1ad6540efa03e02a3ee72a79f\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\b0a732f1ad6540efa03e02a3ee72a79f\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\fac7f7c9d337463885e85bfc68d43f0a\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\fac7f7c9d337463885e85bfc68d43f0a\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\fac7f7c9d337463885e85bfc68d43f0a\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\themazept2\level">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\themazept2\metadata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Levels\themazept2\screenshot.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\ServerData.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Levels\" />
   </ItemGroup>
 
 </Project>
