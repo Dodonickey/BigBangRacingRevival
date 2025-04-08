@@ -30,5 +30,21 @@ namespace BBRRevival.Services.Controllers
 
             _response.Close();
         }
+
+        [Route("GET", "/v1/trophy/ghostsByTime")]
+        public async void GetGhostsByTime()
+        {
+            byte[] data = null;
+            Dictionary<string, object> ghosts = new Dictionary<string, object>(); //dont know how this works yet
+
+            data = Encoding.ASCII.GetBytes("");
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);
+
+            await _response.OutputStream.WriteAsync(data);
+
+            _response.Close();
+        }
     }
 }
