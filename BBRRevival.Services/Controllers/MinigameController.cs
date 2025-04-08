@@ -155,7 +155,7 @@ namespace BBRRevival.Services.Controllers
 
             Log.Verbose(levelId);
 
-            data = File.ReadAllBytes(Path.Combine(CommonPaths.MinigamesRootPath, "217b17e97eb9488d8739016808deb1e1", "level"));
+            data = File.ReadAllBytes(Path.Combine(CommonPaths.MinigamesRootPath, levelId, "level"));
 
             ResponseHelper.AddContentType(_response);
             ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, false);
@@ -228,6 +228,151 @@ namespace BBRRevival.Services.Controllers
 
             ResponseHelper.AddContentType(_response);
             ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, false);
+
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
+
+            _response.Close();
+        }
+
+        [Route("GET", "/v2/minigame/meta/search")]
+        public async void FIndLevels()
+        {
+            byte[] data = null;
+
+            Dictionary<string, object> LevelDatas = new Dictionary<string, object>();
+            LevelDatas.Add("data", new List<object>());
+
+            List<object> Level1 = LevelDatas["data"] as List<object>;
+
+            Dictionary<string, object> Level1Data = new Dictionary<string, object>();
+            Level1Data.Add("name", "Level1");
+            Level1Data.Add("id", "d1a79cbc63964a18a6ba05f11d5df82b");
+            Level1Data.Add("creatorId", "1238429");
+            Level1Data.Add("gameMode", "StarCollect");
+            Level1Data.Add("playerUnit", "OffroadCar");
+            Level1Data.Add("gameQuality", 0.0);
+
+            Level1.Add(Level1Data);
+
+            Dictionary<string, object> Level2Data = new Dictionary<string, object>();
+            Level2Data.Add("name", "Level2");
+            Level2Data.Add("id", "d1a79cbc63964a18a6ba05f11d5df82b");
+            Level2Data.Add("creatorId", "1238429");
+            Level2Data.Add("gameMode", "StarCollect");
+            Level2Data.Add("playerUnit", "OffroadCar");
+            Level2Data.Add("gameQuality", 0.0);
+
+            Level1.Add(Level2Data);
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(LevelDatas));
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);
+
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
+
+            _response.Close();
+        }
+
+        [Route("GET", "/v1/minigame/followee/published")]
+        public async void GetFolloweeLevels()
+        {
+            byte[] data = null;
+
+            Dictionary<string, object> FolloweeLevels = new Dictionary<string, object>();
+            FolloweeLevels.Add("data", new List<object>());
+
+            List<object> Followee = FolloweeLevels["data"] as List<object>;
+
+            Dictionary<string, object> Followeelevel = new Dictionary<string, object>();
+            Followeelevel.Add("name", "Okay");
+            Followeelevel.Add("id", "f6f765c6fc064338b4d28560eac2ccbf-workingPub");//change this with your levels metadata
+            Followeelevel.Add("creatorId", "1238429");
+            Followeelevel.Add("gameMode", "StarCollect");
+
+            Followee.Add(Followeelevel);
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(FolloweeLevels));
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request);
+
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
+
+            _response.Close();
+        }
+
+        [Route("POST", "/v1/starcollect/win")]
+        public async void StarCollectWin()
+        {
+            byte[] data = null;
+
+            Dictionary<string, object> VictoryCollect = new Dictionary<string, object>();
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(VictoryCollect));
+
+            Console.WriteLine(this.RequestBodyAsync().Result);
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
+
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
+
+            _response.Close();
+        }
+
+        [Route("POST", "/v1/starcollect/lose")]
+        public async void StarCollectLose()
+        {
+            byte[] data = null;
+
+            Dictionary<string, object> LoseCollect = new Dictionary<string, object>();
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(LoseCollect));
+
+            Console.WriteLine(this.RequestBodyAsync().Result);
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
+
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
+
+            _response.Close();
+        }
+
+
+        [Route("POST", "/v1/minigame/start")]
+        public async void StartMinigame()
+        {
+            byte[] data = null;
+
+            Dictionary<string, object> Minigame = new Dictionary<string, object>();
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(Minigame));
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
+
+            Console.WriteLine(this.RequestBodyAsync().Result);
+
+            await _response.OutputStream.WriteAsync(data, 0, data.Length);
+
+            _response.Close();
+        }
+
+        [Route("POST", "/v1/trophy/score/send")]//ghost save
+        public async void SendTrophyScore()
+        {
+            byte[] data = null;
+
+            Dictionary<string, object> Minigame = new Dictionary<string, object>();
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(Minigame));
+
+            ResponseHelper.AddContentType(_response);
+            ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
+
+            Console.WriteLine(this.RequestBodyAsync().Result);
 
             await _response.OutputStream.WriteAsync(data, 0, data.Length);
 
