@@ -23,6 +23,8 @@ namespace BBRRevival.Services.Controllers
             byte[] data = null;
 
             Dictionary<string, object> Car = new Dictionary<string, object>();
+            Car.Add("curCar", 1);
+
             data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(Car));
 
             ResponseHelper.AddContentType(_response);

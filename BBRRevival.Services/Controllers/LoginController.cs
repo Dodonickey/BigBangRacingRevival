@@ -266,8 +266,8 @@ namespace BBRRevival.Services.Controllers
                 dict.Add("totalLikes", 10);
                 dict.Add("totalCoinsEarned", 100000);
                 dict.Add("carTrophies", 21000);
-                dict.Add("curCar", 0);//setting this to 0 will give you the offroader. 1 and 2 give you other vechicles
-                dict.Add("carUnlock", new List<int> { 1, 2 });
+                dict.Add("curCar", 0);
+                dict.Add("carUnlock", new List<object> { 0, 1, 2 });//you cant switch cars for some reason maybe needs db
 
                 //Adding Hats and Trails.
                 // The Trail Values seem to be quite easy to add.
