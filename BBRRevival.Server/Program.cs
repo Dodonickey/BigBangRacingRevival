@@ -11,7 +11,7 @@ namespace BBRRevival.Server
         {
             //get the host ip
             int port = 4451;
-            string ip = "192.168.1.7";
+            string ip = "192.168.0.24";
 
             foreach (string arg in args)
             {

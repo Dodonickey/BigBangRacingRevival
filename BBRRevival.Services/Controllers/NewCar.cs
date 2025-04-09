@@ -22,10 +22,11 @@ namespace BBRRevival.Services.Controllers
         {
             byte[] data = null;
 
-            Dictionary<string, object> Car = new Dictionary<string, object>();
-            Car.Add("curCar", 1);
+            string requestBody = await this.RequestBodyAsync();//im stupid so i used chatgpt
 
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(Car));
+            Dictionary<string, object> incomingData = JsonConvert.DeserializeObject<Dictionary<string, object>>(requestBody);
+
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(incomingData));
 
             ResponseHelper.AddContentType(_response);
             ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);
