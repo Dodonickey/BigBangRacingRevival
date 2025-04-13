@@ -245,20 +245,24 @@ namespace BBRRevival.Services.Controllers
             List<object> Level1 = LevelDatas["data"] as List<object>;
 
             Dictionary<string, object> Level1Data = new Dictionary<string, object>();
-            Level1Data.Add("name", "Level1");
-            Level1Data.Add("id", "d1a79cbc63964a18a6ba05f11d5df82b");
+            Level1Data.Add("name", "Elevator Madness!");
+            Level1Data.Add("id", "elevatormadnessprt2");
             Level1Data.Add("creatorId", "1238429");
-            Level1Data.Add("gameMode", "StarCollect");
+            Level1Data.Add("creatorName", "Dodo Nickey");
+            Level1Data.Add("countryCode", "KP");
+            Level1Data.Add("gameMode", "Race");
             Level1Data.Add("playerUnit", "OffroadCar");
             Level1Data.Add("gameQuality", 0.0);
 
             Level1.Add(Level1Data);
 
             Dictionary<string, object> Level2Data = new Dictionary<string, object>();
-            Level2Data.Add("name", "Level2");
-            Level2Data.Add("id", "d1a79cbc63964a18a6ba05f11d5df82b");
+            Level2Data.Add("name", "This was FUN");
+            Level2Data.Add("id", "thisiscoolandfun");
             Level2Data.Add("creatorId", "1238429");
-            Level2Data.Add("gameMode", "StarCollect");
+            Level2Data.Add("creatorName", "Dodo Nickey");
+            Level2Data.Add("countryCode", "KP");
+            Level2Data.Add("gameMode", "Race");
             Level2Data.Add("playerUnit", "OffroadCar");
             Level2Data.Add("gameQuality", 0.0);
 

@@ -41,8 +41,7 @@ namespace BBRRevival.Services.Controllers
             Dictionary<string, object> commentData3 = (Dictionary<string, object>)commentData2["publishTime"];
             commentData3.Add("$date", 1518220800000L);
 
-            commentData2.Add("type", "whatdoesthismean");
-            commentData2.Add("customData", new Dictionary<string, object>());
+            list.Add(commentData2); 
 
             data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(commentData));
 
@@ -59,11 +58,11 @@ namespace BBRRevival.Services.Controllers
         {
             byte[] data = null;
 
-            Dictionary<string, object> savecommentData = new Dictionary<string, object>();
+            string requestBody = await this.RequestBodyAsync();//im stupid so i used chatgpt
 
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(savecommentData));
+            Dictionary<string, object> incomingData = JsonConvert.DeserializeObject<Dictionary<string, object>>(requestBody);
 
-
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(incomingData));
 
             ResponseHelper.AddContentType(_response);
             ResponseHelper.AddResponseHeaders(data, RawUrl, _response, _request, true);

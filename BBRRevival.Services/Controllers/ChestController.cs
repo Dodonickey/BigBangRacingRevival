@@ -41,34 +41,18 @@ namespace BBRRevival.Services.Controllers
         {
             byte[] data = null;
 
-            Dictionary<string, object> _ChestData = new Dictionary<string, object>();
-            _ChestData.Add("id", 3);
-            _ChestData.Add("_id", "12");
-            _ChestData.Add("index", 5);
-            _ChestData.Add("type", "WOOD");
-            _ChestData.Add("timeLeft", 0);
-            _ChestData.Add("level", 1000);
-            _ChestData.Add("notified", true);
+            string requestBody = this.RequestBodyAsync().Result;
 
-            Dictionary<string, object> _ChestData2 = new Dictionary<string, object>();
-            _ChestData2.Add("id", 9);
-            _ChestData2.Add("_id", "12");
-            _ChestData2.Add("index", 11505);
-            _ChestData2.Add("type", "RARE");
-            _ChestData2.Add("timeLeft", 0);
-            _ChestData2.Add("level", 8);
-            _ChestData2.Add("notified", true);
+            // Deserialize the incoming JSON into a dictionary
+            var chestData = JsonConvert.DeserializeObject<Dictionary<string, object>>(requestBody);
 
-            Dictionary<string, object> _ChestData3 = new Dictionary<string, object>();
-            _ChestData3.Add("id", 9);
-            _ChestData3.Add("_id", "12");
-            _ChestData3.Add("index", 36006);
-            _ChestData3.Add("type", "EPIC");
-            _ChestData3.Add("timeLeft", 0);
-            _ChestData3.Add("level", 8);
-            _ChestData3.Add("notified", true);
+            chestData.Add("_id", "12");
+            chestData.Add("timeLeft", 0);
+            chestData.Add("notified", true);
 
-            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(_ChestData));
+            // Serialize the updated dictionary back to JSON
+            data = Encoding.Default.GetBytes(JsonConvert.SerializeObject(chestData));
+
 
             Console.WriteLine(this.RequestBodyAsync().Result);
             ResponseHelper.AddContentType(_response);

@@ -43,7 +43,7 @@ public class PreloadController : Controller
             File.Add("type", "idkWhatToPutHere");
             Log.Warning("HARDCODED URL AT PreloadController.cs at line 44");
             //File.Add("path", $"{_config.IP}downloadFile?{name}"); //this is the adress to download the music bank, it can be anything
-            File.Add("path", $"http://192.168.1.7:4451/downloadFile?{name}"); //this is the adress to download the music bank, it can be anything
+            File.Add("path", $"http://192.168.0.24:4451/downloadFile?{name}"); //this is the adress to download the music bank, it can be anything
             File.Add("version", "0"); //maybe?
         }
         catch (Exception ex)
