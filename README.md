@@ -7,8 +7,8 @@ Stuff like the initialdata is missing which causes progress not to save and othe
 If you played this version or have the data for it please contact me.
 
 ## Features
-Working Adventure map up to node 5 (stuff get buggy after node 4)
-You can switch cars by changing the CurCar key in logincontroller.cs to a number between 0 and 2 (in the server)
+Working Adventure map.
+You can also access the editor too however you have to get to node 17 to do that.
 
 ## Getting Started
 For now, you will have to build (compile) the server yourself.
