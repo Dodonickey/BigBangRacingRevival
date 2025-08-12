@@ -1,4 +1,5 @@
 # Motocraft Sever
+# NOTE: THIS SERVER IS FOR MOTOCRAFT NOT BIG BANG RACING.
 A WIP custom server for Motocraft, released by Cheetah Mobile or some other company in 2017.
 
 ## Important
